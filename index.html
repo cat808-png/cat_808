@@ -2,29 +2,85 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Вход в систему cat_808</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[SYSTEM_OVERRIDE]: cat_808</title>
     <style>
-        body { background-color: black; color: #00ff00; font-family: monospace; padding: 50px; }
-        input { background: transparent; border: 1px solid #00ff00; color: #00ff00; font-family: monospace; padding: 5px; }
-        button { background: #00ff00; color: black; border: none; padding: 5px 10px; cursor: pointer; }
+        * { box-sizing: border-box; }
+        body { 
+            background-color: #050505; 
+            color: #00ff66; 
+            font-family: 'Courier New', Courier, monospace; 
+            padding: 30px; 
+            margin: 0;
+            overflow: hidden;
+            text-shadow: 0 0 5px rgba(0,255,102,0.5);
+        }
+        .matrix-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%; pointer-events: none; z-index: 10;
+        }
+        .terminal {
+            max-width: 800px; margin: 50px auto; background: rgba(10, 10, 10, 0.9);
+            border: 1px solid #00ff66; border-radius: 5px; padding: 20px;
+            box-shadow: 0 0 20px rgba(0,255,102,0.2); position: relative; z-index: 2;
+        }
+        .glitch { animation: glitch 1s linear infinite; }
+        @keyframes glitch {
+            0% { transform: translate(0) } 20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) } 60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) } 100% { transform: translate(0) }
+        }
+        .output-line { margin: 10px 0; line-height: 1.4; opacity: 0; animation: fadeIn 0.5s forwards; }
+        .input-area { margin-top: 30px; display: flex; align-items: center; }
+        .prompt { color: #00ff66; margin-right: 10px; font-weight: bold; }
+        input { 
+            background: transparent; border: none; color: #ffffff; 
+            font-family: monospace; font-size: 16px; width: 100%; outline: none;
+        }
+        .error-msg { color: #ff3333; font-weight: bold; display: none; margin-top: 15px; }
+        /* Анимация задержки строк */
+        .l1 { animation-delay: 0.2s; } .l2 { animation-delay: 0.8s; } .l3 { animation-delay: 1.4s; }
     </style>
 </head>
 <body>
-    <h1>СЕРВЕР CAT_808 ИНИЦИАЛИЗИРОВАН...</h1>
-    <p>Ход 3/1000. Для получения следующего файла введите пароль.</p>
-    <p><i>Подсказка: Загляни в код этой страницы (F12) или найди скрытый комментарий.</i></p>
-    
-    <input type="text" id="pass" placeholder="Введите ключ...">
-    <button onclick="check()">Войти</button>
+    <div class="matrix-bg"></div>
+    <div class="terminal">
+        <h1 class="glitch">> СЕРВЕР CAT_808 ИНИЦИАЛИЗИРОВАН...</h1>
+        <div class="output-line l1">[INFO] Протокол шифрования: Слой 3 из 1000.</div>
+        <div class="output-line l2">[WARNING] Обнаружено несанкционированное подключение. Логи заблокированы.</div>
+        <div class="output-line l3">[SYSTEM] Для дешифровки следующего архива введите системный токен ядра.</div>
+        
+        <div class="input-area">
+            <span class="prompt">root@cat_808:~#</span>
+            <input type="text" id="terminal-input" autofocus placeholder="Введите команду или токен..." onkeydown="handleInput(event)">
+        </div>
+        <div id="error" class="error-msg">> ОШИБКА: ДОСТУП ПРЕКРАЩЕН. НЕВЕРНЫЙ ТОКЕН. ПРОБУЙ ЕЩЕ.</div>
+    </div>
 
     <script>
-        // Скрытый комментарий для игрока: Ищи зацепку в заголовках или расшифруй двоичный код: 00111000 0011Map0000
-        function check() {
-            var answer = document.getElementById('pass').value;
-            if(answer === "808_omega") {
-                alert("Доступ разрешен! Переходи на следующий шаг: [Здесь будет ссылка на Ход №4]");
-            } else {
-                alert("Доступ запрещен. Неверный ключ.");
+        // Подсказка инспектору кода: 
+        // Хэй, хакер! Токен для терминала зашит прямо здесь. 
+        // Переведи это из двоичной системы в текст: 01101110 01100101 01101111 01101110 01011111 00111000 00110000 00111000
+        
+        const correctToken = "neon_808"; // Ответ, который должен ввести игрок
+
+        function handleInput(e) {
+            if (e.key === 'Enter') {
+                const input = document.getElementById('terminal-input');
+                const error = document.getElementById('error');
+                
+                if (input.value.trim().toLowerCase() === correctToken) {
+                    error.style.display = 'none';
+                    input.disabled = true;
+                    alert("✅ ДОСТУП РАЗРЕШЕН. Переход на Ход 4/1000... (Сюда вы вставите ссылку на следующий шаг)");
+                } else {
+                    error.style.display = 'block';
+                    input.value = '';
+                    // Эффект тряски при ошибке
+                    document.querySelector('.terminal').classList.add('glitch');
+                    setTimeout(() => document.querySelector('.terminal').classList.remove('glitch'), 500);
+                }
             }
         }
     </script>
