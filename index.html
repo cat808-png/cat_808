@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в систему cat_808</title>
+    <style>
+        body { background-color: black; color: #00ff00; font-family: monospace; padding: 50px; }
+        input { background: transparent; border: 1px solid #00ff00; color: #00ff00; font-family: monospace; padding: 5px; }
+        button { background: #00ff00; color: black; border: none; padding: 5px 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>СЕРВЕР CAT_808 ИНИЦИАЛИЗИРОВАН...</h1>
+    <p>Ход 3/1000. Для получения следующего файла введите пароль.</p>
+    <p><i>Подсказка: Загляни в код этой страницы (F12) или найди скрытый комментарий.</i></p>
+    
+    <input type="text" id="pass" placeholder="Введите ключ...">
+    <button onclick="check()">Войти</button>
+
+    <script>
+        // Скрытый комментарий для игрока: Ищи зацепку в заголовках или расшифруй двоичный код: 00111000 0011Map0000
+        function check() {
+            var answer = document.getElementById('pass').value;
+            if(answer === "808_omega") {
+                alert("Доступ разрешен! Переходи на следующий шаг: [Здесь будет ссылка на Ход №4]");
+            } else {
+                alert("Доступ запрещен. Неверный ключ.");
+            }
+        }
+    </script>
+</body>
+</html>
